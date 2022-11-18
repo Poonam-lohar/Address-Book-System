@@ -1,24 +1,49 @@
 package com.bridgelabz;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class AddressBook {
 
-    public static void main(String[] args) {
+    ArrayList<Contacts> arrayDetails = new ArrayList<Contacts>();
+    Scanner sc = new Scanner(System.in);
 
-        System.out.println("Welcome to Address Book System\n");
+    public void addDetails () {
 
-        /**
-         * We are just calling an object using class name.
-         * Simply passing the argument value according to the parameter defined in the constructor.
-         */
+        Contacts info = new Contacts();//create object of contact class as info
 
-        Contacts info = new Contacts("Poonam", "Desai", "Shirol", "Shirol", "Maharashtra", "loharpoonam98@gmail.com", 416103, 7058835985l);
-        System.out.println("Firstname: " + info.getFirstName());
-        System.out.println("Lastname: " + info.getLastName());
-        System.out.println("Address: " + info.getAddress());
-        System.out.println("City: " + info.getCity());
-        System.out.println("State: " + info.getState());
-        System.out.println("Email: " + info.getEmail());
-        System.out.println("Zip: " + info.getZip());
-        System.out.println("PhoneNumber: " + info.getPhoneNumber());
+        System.out.println("Enter the first name");
+        info.setFirstName(sc.nextLine());
+        System.out.println("Enter the last name");
+        info.setLastName(sc.nextLine());
+        System.out.println("Enter the address");
+        info.setAddress(sc.nextLine());
+        System.out.println("Enter the city");
+        info.setCity(sc.nextLine());
+        System.out.println("Enter the state");
+        info.setState(sc.nextLine());
+        System.out.println("Enter the email");
+        info.setEmail(sc.nextLine());
+        System.out.println("Enter the zip code");
+        info.setZip(sc.nextInt());
+        System.out.println("Enter the phone number");
+        info.setPhoneNumber(sc.nextLong());
+        arrayDetails.add(info);
+    }
+
+    public void display() {
+
+        System.out.println(arrayDetails);
+    }
+
+    public static void main (String[]args){
+
+        System.out.println("Welcome to Address Book Program");
+
+        AddressBook details = new AddressBook();//object create
+         // calling method to object name . method name
+        details.addDetails();
+        details.display();
     }
 }
+

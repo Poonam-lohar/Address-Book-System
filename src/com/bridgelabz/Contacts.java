@@ -5,20 +5,6 @@ public class Contacts {
     private String firstName,lastName,address,city,state,email;
     private int zip;
     private long phoneNumber;
-    /**
-     * Used Constructor to store the Parameter
-     * Also used this keyword to make difference between class name variable and constructor name variable
-     */
-    public Contacts(String firstName, String lastName, String address, String city, String state, String email, int zip, long phoneNumber) {
-        this.firstName=firstName;
-        this.lastName=lastName;
-        this.address = address;
-        this.city = city;
-        this.state = state;
-        this.email = email;
-        this.zip = zip;
-        this.phoneNumber = phoneNumber;
-    }
 
     public String getFirstName() {
         return firstName;
