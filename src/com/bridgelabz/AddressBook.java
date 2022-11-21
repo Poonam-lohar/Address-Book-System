@@ -89,10 +89,8 @@ public class AddressBook {
         AddressBook details = new AddressBook();//object create
          // calling method to object name . method name
         details.addDetails();
-        int i=0;
-        while (i==0) {
 
-            System.out.println("What do you want to do: ");
+        System.out.println("What do you want to do: ");
             System.out.println("1.Add Details.\n2.Edit Details.\n3.Exit");
             int choice = sc.nextInt();
             switch (choice) {
@@ -106,11 +104,9 @@ public class AddressBook {
                     System.out.println("Thank You We are Exiting");
                     return;
                     default:
-                    i = 1;
                     System.out.println("Invalid");
                     break;
             }
         }
     }
-}
 
