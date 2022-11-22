@@ -35,13 +35,15 @@ public class AddressBook {
         String confirmName = sc.next();
         for (int i=0; i < arrayDetails.size(); i++) {
             if (arrayDetails.get(i).getFirstName().equals(confirmName)) {
+
                 System.out.println("\n1.First Name\n2.last Name\n3.Address\n4.city\n5state\n6.Email\n7.Zip code\n8.Phone number");
+
                 int edit = sc.nextInt();
                 switch (edit) {
                     case 1 :
-                    System.out.println("Enter First name: ");
-                    arrayDetails.get(i).setFirstName(sc.next());
-                    break;
+                        System.out.println("Enter First name: ");
+                        arrayDetails.get(i).setFirstName(sc.next());
+                        break;
                     case 2 :
                         System.out.println("Enter last name: ");
                         arrayDetails.get(i).setLastName(sc.next());
@@ -81,8 +83,24 @@ public class AddressBook {
                 System.out.println("Enter valid first name: ");
         }
     }
+    public void deleteDetails() {
 
-    public static void main (String[]args){
+        System.out.println("Confirm the first name to delete contacts: ");
+
+        String ConfirmName = sc.next();
+        for (int i=0; i < arrayDetails.size();i++) {
+            if (arrayDetails.get(i).getFirstName().equals(ConfirmName)) {
+                arrayDetails.remove(i);
+                System.out.println("Contact Deleted Successfully.....");
+                System.out.println("List after removing details: "+arrayDetails);
+            }
+            else {
+                System.out.println("Enter valid first name: ");
+            }
+        }
+    }
+
+    public static void main (String[]args) {
 
         System.out.println("Welcome to Address Book Program");
 
@@ -91,7 +109,9 @@ public class AddressBook {
         details.addDetails();
 
         System.out.println("What do you want to do: ");
-            System.out.println("1.Add Details.\n2.Edit Details.\n3.Exit");
+
+            System.out.println("1.Add Details.\n2.Edit Details.\n3.Delete contact\n4.Exit");
+
             int choice = sc.nextInt();
             switch (choice) {
                 case 1:
@@ -101,6 +121,9 @@ public class AddressBook {
                     details.editDetails();
                     break;
                 case 3:
+                    details.deleteDetails();
+                    break;
+                case 4:
                     System.out.println("Thank You We are Exiting");
                     return;
                     default:
