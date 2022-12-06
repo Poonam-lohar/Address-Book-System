@@ -71,15 +71,7 @@ public class Contacts {
     }
 
     public String toString() {
-        return "Contacts{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", address='" + address + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", email='" + email + '\'' +
-                ", zip=" + zip +
-                ", phoneNo=" + phoneNumber + '}';
+        return "Contacts{"+ "\n firstName= " + firstName + "\n  lastName= " + lastName + "\n Address= " + address + "\n city= " + city + "\n  state= " + state + "\n email= " + email + "\n zip=" + zip +"\n phoneNo= " + phoneNumber + '}';
 
     }
 }
