@@ -20,22 +20,23 @@ public class AddressBook {
         Contacts info = new Contacts();//create object of contact class as info
 
         System.out.print("Enter the first name: ");
-        info.setFirstName(sc.nextLine());
+        info.setFirstName(sc.next());
         System.out.print("Enter the last name: ");
-        info.setLastName(sc.nextLine());
+        info.setLastName(sc.next());
         System.out.print("Enter the address: ");
-        info.setAddress(sc.nextLine());
+        info.setAddress(sc.next());
         System.out.print("Enter the city: ");
-        info.setCity(sc.nextLine());
+        info.setCity(sc.next());
         System.out.print("Enter the state: ");
-        info.setState(sc.nextLine());
+        info.setState(sc.next());
         System.out.print("Enter the email: ");
-        info.setEmail(sc.nextLine());
+        info.setEmail(sc.next());
         System.out.print("Enter the zip code: ");
         info.setZip(sc.nextInt());
         System.out.print("Enter the phone number: ");
         info.setPhoneNumber(sc.nextLong());
         arrayDetails.add(info);
+        System.out.println(arrayDetails);
     }
 
     public void display() {
