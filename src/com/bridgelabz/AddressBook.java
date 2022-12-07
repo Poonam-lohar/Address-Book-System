@@ -1,12 +1,13 @@
 package com.bridgelabz;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class AddressBook {
     /*
-    *create arraylist object
-    * It implements list interface
+     *create arraylist object
+     * It implements list interface
      */
 
     ArrayList<Contacts> arrayDetails = new ArrayList<Contacts>();
@@ -14,6 +15,9 @@ public class AddressBook {
     create scanner class object
      */
     static Scanner sc = new Scanner(System.in);
+
+    static HashMap<String, ArrayList> hashmap = new HashMap<>();
+    static AddressBook details = new AddressBook();
 
     public void addDetails() {
 
@@ -36,7 +40,7 @@ public class AddressBook {
         System.out.print("Enter the phone number: ");
         info.setPhoneNumber(sc.nextLong());
         arrayDetails.add(info);
-        System.out.println(arrayDetails);
+        //System.out.println(arrayDetails);
     }
 
     public void display() {
@@ -96,6 +100,7 @@ public class AddressBook {
         }
     }
 
+
     public void deleteDetails() {
 
         System.out.println("Confirm the first name to delete contacts: ");
@@ -112,23 +117,18 @@ public class AddressBook {
         }
     }
 
-    public static void main(String[] args) {
-
-
-        AddressBook details = new AddressBook();//object create
-        /*
-        declare variable
-         */
-        int input, ans;
-
-        Scanner sc = new Scanner(System.in);
-        do {
-            System.out.println("Welcome to Address Book Program");
+    public void createAddressBook() {
+        System.out.println("Enter name of address book:");
+        String Address_Book_name = sc.next();
+        ArrayList<Contacts> new_address_book = new ArrayList<>();
+        arrayDetails = new_address_book;
+        while (true) {
             System.out.println("What do you want to do: ");
 
-            System.out.println("1.Add Details.\n2.Edit Details.\n3.Delete contact\n4.Display\n5.Exit");
+            System.out.println("1.Add Details.\n2.Edit Details.\n3.Delete contact\n4.Display\n5.Create address book\n6.Exit");
 
             int choice = sc.nextInt();
+
             switch (choice) {
                 case 1:
                     details.addDetails();
@@ -141,16 +141,25 @@ public class AddressBook {
                     break;
                 case 4:
                     details.display();
+                    break;
                 case 5:
+                    details.createAddressBook();
+                    break;
+                case 6:
                     System.out.println("Thank You We are Exiting");
                     return;
                 default:
                     System.out.println("Invalid");
                     break;
             }
-            System.out.println("Do you want to continue?(0/1)");
-            ans = sc.nextInt();
-        } while (ans == 1);
+            hashmap.put(Address_Book_name, arrayDetails);
+            System.out.println(hashmap);
+        }
+    }
+    public static void main(String[] args) {
+
+        System.out.println("Welcome To Address Book Program....");
+        details.createAddressBook();
     }
 }
 
