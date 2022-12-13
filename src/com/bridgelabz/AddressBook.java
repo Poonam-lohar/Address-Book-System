@@ -18,6 +18,12 @@ public class AddressBook {
 
     static HashMap<String, ArrayList> hashmap = new HashMap<>();
     static AddressBook details = new AddressBook();
+    ArrayList<Contacts> new_address_book = new ArrayList<>();
+    private Contacts newPerson;
+
+    /*
+    Method to add details in contacts
+     */
 
     public void addDetails() {
 
@@ -45,7 +51,11 @@ public class AddressBook {
 
     public void display() {
         System.out.println(arrayDetails);
+
     }
+    /*
+    method to edit contact list.
+     */
 
     public void editDetails() {
         System.out.println("Confirm first name to edit details: ");
@@ -99,7 +109,9 @@ public class AddressBook {
                 System.out.println("Enter valid first name: ");
         }
     }
-
+     /*
+     Method to delete contact from address book.
+     */
 
     public void deleteDetails() {
 
@@ -117,15 +129,36 @@ public class AddressBook {
         }
     }
 
+    /**
+     * Method to check for duplicate entry before adding the person.
+     */
+
+    public void duplicateCheck( String firstName) {
+        /**
+         * for loop is used check the condition if condition is true
+         * then element at the specified position in this list in arrayDetails all store in contactName
+     */
+
+        for (int k = 0; k < arrayDetails.size(); k++) {
+            String contactName = arrayDetails.get(k).getFirstName();
+
+            if (firstName.equals(contactName)) {
+                System.out.println("This Person is Already Present");
+            } else {
+                System.out.println("You can Add this Person");
+                break;
+            }
+        }
+    }
+
     public void createAddressBook() {
         System.out.println("Enter name of address book:");
         String Address_Book_name = sc.next();
-        ArrayList<Contacts> new_address_book = new ArrayList<>();
         arrayDetails = new_address_book;
         while (true) {
             System.out.println("What do you want to do: ");
 
-            System.out.println("1.Add Details.\n2.Edit Details.\n3.Delete contact\n4.Display\n5.Create address book\n6.Exit");
+            System.out.println("1.Add Details.\n2.Edit Details.\n3.Delete contact\n4.Check Duplicate entry\n5.Display\n6.Create address book\n7.Exit");
 
             int choice = sc.nextInt();
 
@@ -139,13 +172,18 @@ public class AddressBook {
                 case 3:
                     details.deleteDetails();
                     break;
+
                 case 4:
+                    System.out.println("Enter first name to check duplicate: ");
+                    String name = sc.next();
+                    details.duplicateCheck(name);
+                case 5:
                     details.display();
                     break;
-                case 5:
+                case 6:
                     details.createAddressBook();
                     break;
-                case 6:
+                case 7:
                     System.out.println("Thank You We are Exiting");
                     return;
                 default:
@@ -162,4 +200,3 @@ public class AddressBook {
         details.createAddressBook();
     }
 }
-
