@@ -154,27 +154,37 @@ public class AddressBook {
     }
 
     /*
-    Method to search person by city name
+    Method to search person by city name.
      */
     public List<Contacts> searchByCity(String cityName) {
-         return arrayDetails.stream().filter(person ->person.getCity().equalsIgnoreCase(cityName)).collect(Collectors.toList());
+         return arrayDetails.stream().filter(person -> person.getCity().equalsIgnoreCase(cityName)).collect(Collectors.toList());
+    }
+
+    /*
+    Method to search person by state name.
+     */
+    public List<Contacts> searchByState(String stateName) {
+        return arrayDetails.stream().filter(person -> person.getState().equalsIgnoreCase(stateName)).collect(Collectors.toList());
     }
 
 
     public void searchPerson() {
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Select options: 1.By City: ");
-        int select = sc.nextInt();
-        sc.nextLine();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Select options: 1.By City 2.By State");
+        int select = scanner.nextInt();
+        //sc.nextLine();
         switch (select) {
             case 1:
-                System.out.println("Enter city name: ");
-                String cityName = sc.next();
+                System.out.println("Enter City Name: ");
+                String cityName = scanner.next();
                 arrayDetails.forEach(book -> searchByCity(cityName).forEach(System.out::println));
                 break;
+            case 2:
+                System.out.println("Enter State Name: ");
+                String stateName = scanner.next();
+                arrayDetails.forEach(book -> searchByState(stateName).forEach(System.out::println));
         }
-
     }
 
     public void createAddressBook() {
@@ -184,7 +194,7 @@ public class AddressBook {
         while (true) {
             System.out.println("What do you want to do: ");
 
-            System.out.println("1.Add Details.\n2.Edit Details.\n3.Delete contact\n4.Check Duplicate entry\n5.Search person by city\n6.Display\n7.Create address book\n8.Exit");
+            System.out.println("1.Add Details.\n2.Edit Details.\n3.Delete contact\n4.Check Duplicate entry\n5.Search person \n6.Display\n7.Create address book\n8.Exit");
 
             int choice = sc.nextInt();
 
