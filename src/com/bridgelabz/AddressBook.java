@@ -3,6 +3,8 @@ package com.bridgelabz;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class AddressBook {
     /*
@@ -151,6 +153,30 @@ public class AddressBook {
         }
     }
 
+    /*
+    Method to search person by city name
+     */
+    public List<Contacts> searchByCity(String cityName) {
+         return arrayDetails.stream().filter(person ->person.getCity().equalsIgnoreCase(cityName)).collect(Collectors.toList());
+    }
+
+
+    public void searchPerson() {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Select options: 1.By City: ");
+        int select = sc.nextInt();
+        sc.nextLine();
+        switch (select) {
+            case 1:
+                System.out.println("Enter city name: ");
+                String cityName = sc.next();
+                arrayDetails.forEach(book -> searchByCity(cityName).forEach(System.out::println));
+                break;
+        }
+
+    }
+
     public void createAddressBook() {
         System.out.println("Enter name of address book:");
         String Address_Book_name = sc.next();
@@ -158,7 +184,7 @@ public class AddressBook {
         while (true) {
             System.out.println("What do you want to do: ");
 
-            System.out.println("1.Add Details.\n2.Edit Details.\n3.Delete contact\n4.Check Duplicate entry\n5.Display\n6.Create address book\n7.Exit");
+            System.out.println("1.Add Details.\n2.Edit Details.\n3.Delete contact\n4.Check Duplicate entry\n5.Search person by city\n6.Display\n7.Create address book\n8.Exit");
 
             int choice = sc.nextInt();
 
@@ -176,14 +202,18 @@ public class AddressBook {
                 case 4:
                     System.out.println("Enter first name to check duplicate: ");
                     String name = sc.next();
-                    details.duplicateCheck(name);
+                   details.duplicateCheck(name);
+                   break;
                 case 5:
-                    details.display();
+                    details.searchPerson();
                     break;
                 case 6:
-                    details.createAddressBook();
+                    details.display();
                     break;
                 case 7:
+                    details.createAddressBook();
+                    break;
+                case 8:
                     System.out.println("Thank You We are Exiting");
                     return;
                 default:
