@@ -225,6 +225,12 @@ public class AddressBook {
          * display this options
          */
         System.out.println("1. By first name");
+        System.out.println("2. By last name");
+        System.out.println("3. By city");
+        System.out.println("4. By state");
+        System.out.println("5. By zip");
+        System.out.println("6. Back");
+
         /**
          * choose the option what u want
          */
@@ -237,6 +243,15 @@ public class AddressBook {
                 AddressBook.sortBy(Contacts::getFirstName).forEach(System.out::println);
                 break;
             case 2:
+                AddressBook.sortBy(Contacts::getLastName).forEach(System.out::println);
+                break;
+            case 3:
+                AddressBook.sortBy(Contacts::getCity).forEach(System.out::println);
+                break;
+            case 4:
+                AddressBook.sortBy(Contacts::getState).forEach(System.out::println);
+                break;
+            case 5:
                 return;
             default:
                 System.out.println("INVALID CHOICE!");
