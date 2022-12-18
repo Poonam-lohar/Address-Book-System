@@ -1,6 +1,7 @@
 package com.bridgelabz;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class AddressBook {
@@ -9,7 +10,7 @@ public class AddressBook {
      * It implements list interface
      */
 
-    ArrayList<Contacts> arrayDetails = new ArrayList<Contacts>();
+    static ArrayList<Contacts> arrayDetails = new ArrayList<Contacts>();
     /*
     create scanner class object
      */
@@ -164,6 +165,14 @@ public class AddressBook {
         return arrayDetails.stream().filter(person -> person.getState().equalsIgnoreCase(stateName)).collect(Collectors.toList());
     }
 
+    public static List<Contacts> sortBy(Function<? super Contacts, ? extends String> key) {
+        return arrayDetails.stream().sorted(Comparator.comparing(key)).collect(Collectors.toList());
+    }
+
+    public  List<Contacts> sortByZip(Function<? super Contacts, ? extends Long> key) {
+        return arrayDetails.stream().sorted(Comparator.comparing(key)).collect(Collectors.toList());
+    }
+
 
     public void searchPerson() {
 
@@ -209,8 +218,29 @@ public class AddressBook {
                 System.out.println("Invalid Option");
 
         }
+    }
 
+    public static void sortByFirstName() {
+        /**
+         * display this options
+         */
+        System.out.println("1. By first name");
+        /**
+         * choose the option what u want
+         */
+        System.out.print("Your choice: ");
 
+        int choice = sc.nextInt();
+        sc.nextLine();
+        switch (choice) {
+            case 1:
+                AddressBook.sortBy(Contacts::getFirstName).forEach(System.out::println);
+                break;
+            case 2:
+                return;
+            default:
+                System.out.println("INVALID CHOICE!");
+        }
     }
 
     public void createAddressBook() {
@@ -220,7 +250,7 @@ public class AddressBook {
         while (true) {
             System.out.println("What do you want to do: ");
 
-            System.out.println("1.Add Details.\n2.Edit Details.\n3.Delete contact\n4.Check Duplicate entry\n5.Search person \n6.Count by option.\n7.Display\n8.Create address book\n9.Exit");
+            System.out.println("1.Add Details.\n2.Edit Details.\n3.Delete contact\n4.Check Duplicate entry\n5.Search person \n6.Count by option.\n7.Sort by\n8.Display\n9.Create address book\n10.Exit");
 
             int choice = sc.nextInt();
 
@@ -247,12 +277,15 @@ public class AddressBook {
                     details.countByOption();
                     break;
                 case 7:
-                    details.display();
+                    details.sortByFirstName();
                     break;
                 case 8:
-                    details.createAddressBook();
+                    details.display();
                     break;
                 case 9:
+                    details.createAddressBook();
+                    break;
+                case 10:
                     System.out.println("Thank You We are Exiting");
                     return;
                 default:
@@ -263,6 +296,8 @@ public class AddressBook {
             System.out.println(hashmap);
         }
     }
+
+
     public static void main(String[] args) {
 
         System.out.println("Welcome To Address Book Program....");
