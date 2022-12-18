@@ -1,9 +1,6 @@
 package com.bridgelabz;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class AddressBook {
@@ -187,6 +184,35 @@ public class AddressBook {
         }
     }
 
+    public void countByOption() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("1.Count city\n2.Count by State\n3.Back");
+        System.out.println("Enter choice: ");
+        int choice = sc.nextInt();
+
+        switch (choice) {
+            case 1:
+                System.out.println("Enter city name: ");
+                String cityName = sc.next();
+                Map<String,Long> countCity = arrayDetails.stream().collect(Collectors.groupingBy(e -> e.getCity(),Collectors.counting()));
+                System.out.println(countCity + "\n");
+                break;
+            case 2:
+                System.out.println("Enter state name: " );
+                String stateName = sc.next();
+                Map<String,Long> countState = arrayDetails.stream().collect(Collectors.groupingBy(e -> e.getState(),Collectors.counting()));
+                System.out.println(countState + "\n");
+                break;
+            case 3:
+                return;
+            default:
+                System.out.println("Invalid Option");
+
+        }
+
+
+    }
+
     public void createAddressBook() {
         System.out.println("Enter name of address book:");
         String Address_Book_name = sc.next();
@@ -194,7 +220,7 @@ public class AddressBook {
         while (true) {
             System.out.println("What do you want to do: ");
 
-            System.out.println("1.Add Details.\n2.Edit Details.\n3.Delete contact\n4.Check Duplicate entry\n5.Search person \n6.Display\n7.Create address book\n8.Exit");
+            System.out.println("1.Add Details.\n2.Edit Details.\n3.Delete contact\n4.Check Duplicate entry\n5.Search person \n6.Count by option.\n7.Display\n8.Create address book\n9.Exit");
 
             int choice = sc.nextInt();
 
@@ -218,12 +244,15 @@ public class AddressBook {
                     details.searchPerson();
                     break;
                 case 6:
-                    details.display();
+                    details.countByOption();
                     break;
                 case 7:
-                    details.createAddressBook();
+                    details.display();
                     break;
                 case 8:
+                    details.createAddressBook();
+                    break;
+                case 9:
                     System.out.println("Thank You We are Exiting");
                     return;
                 default:
