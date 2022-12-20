@@ -258,6 +258,18 @@ public class AddressBook {
         }
     }
 
+    //writeData method
+    void writeData() {
+        AddressBookMain addressBookMain = new AddressBookMain();//creating an object of FileIOServices class
+        addressBookMain.writeData();//using object reference calling writeData method
+    }
+
+    //readData method
+     void readData() {
+        AddressBookMain addressBookMain = new AddressBookMain();//creating an object of FileIOServices class
+        addressBookMain.readData();//using object reference calling writeData method
+    }
+
     public void createAddressBook() {
         System.out.println("Enter name of address book:");
         String Address_Book_name = sc.next();
@@ -265,7 +277,7 @@ public class AddressBook {
         while (true) {
             System.out.println("What do you want to do: ");
 
-            System.out.println("1.Add Details.\n2.Edit Details.\n3.Delete contact\n4.Check Duplicate entry\n5.Search person \n6.Count by option.\n7.Sort by\n8.Display\n9.Create address book\n10.Exit");
+            System.out.println("1.Add Details.\n2.Edit Details.\n3.Delete contact\n4.Check Duplicate entry\n5.Search person \n6.Count by option.\n7.Sort by\n8.Display\n9.Create address book\n10.Write Data\n11.Read Data\n12.Exit");
 
             int choice = sc.nextInt();
 
@@ -301,6 +313,12 @@ public class AddressBook {
                     details.createAddressBook();
                     break;
                 case 10:
+                    details.writeData();
+                    break;
+                case 11:
+                    details.readData();
+                    break;
+                case 12:
                     System.out.println("Thank You We are Exiting");
                     return;
                 default:

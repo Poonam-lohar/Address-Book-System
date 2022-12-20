@@ -1,0 +1,19 @@
+[ 
+ {
+firstName = poonam
+lastName = desai
+Address = shirol
+city = kolhapur
+state = maha
+email = poonam98
+zip =987654
+phoneNo = 9878978909},  
+ {
+firstName = poonam
+lastName = desai
+Address = savlaj
+city = sangli
+state = maha
+email = poonam12
+zip =987657
+phoneNo = 989089089}]
