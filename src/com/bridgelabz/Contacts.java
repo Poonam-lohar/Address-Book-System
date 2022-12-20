@@ -6,6 +6,10 @@ public class Contacts {
     private int zip;
     private long phoneNumber;
 
+    public Contacts() {
+        this.firstName = getFirstName();
+    }
+
     public String getFirstName() {
         return firstName;
     }
