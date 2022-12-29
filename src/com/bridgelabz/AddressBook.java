@@ -1,5 +1,8 @@
 package com.bridgelabz;
 
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -270,6 +273,41 @@ public class AddressBook {
         addressBookMain.readData();//using object reference calling writeData method
     }
 
+    //write csv file
+    public void writeCSVFile(){
+        try {
+            FileWriter fileWriterCSV = new FileWriter(CSVFile);//creating file writer object and pass file path variable
+            fileWriterCSV.write(String.valueOf(AddressBook.addressBookList));
+            fileWriterCSV.close();//close file writer
+        }catch (IOException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    //read csv file
+    public void CSVFileReader() {
+        try (Reader reader = Files.newBufferedReader(Paths.get(String.valueOf(CSVFile)));
+             CSVReader csvReader = new CSVReader(reader)) {
+            String[] nextRecord;
+            while ((nextRecord = csvReader.readNext()) != null) {
+                System.out.println("First Name: " + nextRecord[0]);
+                System.out.println("Last Name: " + nextRecord[1]);
+                System.out.println("Address: " + nextRecord[2]);
+                System.out.println("City: " + nextRecord[3]);
+                System.out.println("State: " + nextRecord[4]);
+                System.out.println("Pin Code: " + nextRecord[5]);
+                System.out.println("Mobile Number: " + nextRecord[6]);
+                System.out.println("Email Address: " + nextRecord[7]);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (CsvValidationException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+
+
     public void createAddressBook() {
         System.out.println("Enter name of address book:");
         String Address_Book_name = sc.next();
@@ -277,7 +315,7 @@ public class AddressBook {
         while (true) {
             System.out.println("What do you want to do: ");
 
-            System.out.println("1.Add Details.\n2.Edit Details.\n3.Delete contact\n4.Check Duplicate entry\n5.Search person \n6.Count by option.\n7.Sort by\n8.Display\n9.Create address book\n10.Write Data\n11.Read Data\n12.Exit");
+            System.out.println("1.Add Details.\n2.Edit Details.\n3.Delete contact\n4.Check Duplicate entry\n5.Search person \n6.Count by option.\n7.Sort by\n8.Display\n9.Create address book\n10.Write Data\n11.Read Data\n12.Write CSV\n13.Read Csv\n14.Exit");
 
             int choice = sc.nextInt();
 
@@ -319,6 +357,12 @@ public class AddressBook {
                     details.readData();
                     break;
                 case 12:
+                    details.writeCSVFile();
+                    break;
+                case 13:
+                    details.CSVFileReader();
+                    break;
+                case 14:
                     System.out.println("Thank You We are Exiting");
                     return;
                 default:
